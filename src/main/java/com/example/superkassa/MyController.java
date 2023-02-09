@@ -18,7 +18,7 @@ public class MyController {
     }
 
     @PostMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<MyJson> getById(@RequestBody RequestDTO request) {
+    public ResponseEntity<MyJson> getById(@RequestBody Request request) {
         if (request == null) {
             return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
         }
