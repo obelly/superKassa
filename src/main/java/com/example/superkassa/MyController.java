@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/v1")
 public class MyController {
     private final MyService service;
 
@@ -17,7 +17,7 @@ public class MyController {
         this.service = service;
     }
 
-    @PostMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/modify", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<MyJson> getById(@RequestBody Request request) {
         if (request == null) {
             return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
