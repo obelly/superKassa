@@ -13,8 +13,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.OptimisticLockType;
-import org.hibernate.annotations.OptimisticLocking;
 import org.hibernate.type.SqlTypes;
 
 @Getter
@@ -25,7 +23,6 @@ import org.hibernate.type.SqlTypes;
 @Builder
 @Entity
 @Table(name = "sk_example_table")
-@OptimisticLocking(type = OptimisticLockType.VERSION)
 public class MyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
