@@ -1,9 +1,8 @@
 package com.example.superkassa;
 
-import jakarta.persistence.LockModeType;
-import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class MyService {
@@ -14,12 +13,11 @@ public class MyService {
     }
 
     @Transactional
-    @Lock(LockModeType.PESSIMISTIC_READ)
     public MyJson changeCurrent(Integer id, Integer add) {
         MyEntity entity = repository.findById(id).orElse(null);
         assert entity != null;
-        int value = entity.getObj().getCurrent() + add;
-        entity.getObj().setCurrent(value);
+        AtomicInteger atomicInteger = new AtomicInteger(entity.getObj().getCurrent());
+        entity.getObj().setCurrent(atomicInteger.addAndGet(add));
         repository.save(entity);
         return entity.getObj();
     }
